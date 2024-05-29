@@ -1,0 +1,150 @@
+<div class="students">
+
+    <div *ngIf="!studentService.isAddNew" class="students__list">
+        <div class="header">
+            <div class="title">
+                students Main Details
+            </div>
+
+            <div class="option">
+                <button class="add_button" (click)="studentService.addNew()"> <span class="material-symbols-outlined"> add </span>Add New</button>
+            </div>
+
+        </div>
+
+        <div >
+
+            <table class="list">
+                <tr>
+                  <th>ID</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>DOB</th>
+                  <th>Gender</th>
+                  <th>Address</th>
+                  <th>District</th>
+                  <th>Contact No</th>
+                  <th>Grade</th>
+                  
+                </tr>
+                <tr  class="data" *ngFor="let student of studentService.studentList; let i = index">
+                  <td>{{ student.id }}</td>
+                  <td>{{ student.first_name }}</td>
+                  <td>{{ student.last_name }}</td>
+                  <td>{{ student.dob }}</td>
+                  <td>{{ student.gender }}</td>
+                  <td>{{ student.address }}</td>
+                  <td>{{ student.district }}</td>
+                  <td>{{ student.contact_no }}</td>
+                  <td>{{ student.grade }}</td>
+                  <td><button  class="material-symbols-outlined buttons__edit" (click)="this.studentService.editStudent(i)">edit</button></td>
+                  <td><button  class="material-symbols-outlined buttons__delete" (click)="this.studentService.deleteStudent(i)">delete</button></td>
+                </tr>              
+                
+              </table>
+
+        </div>
+    
+    </div>
+
+
+    <div *ngIf="studentService.isAddNew" class="students__add__new"> 
+        
+        <div class="form__row1">
+            <div class="form__data">
+                <form>
+                    <table>
+
+                        <tr>
+
+                            <td><span class="form__name">First_name :</span></td>
+                            <td><input  type="text" class ="form__input" [(ngModel)]="studentService.studentObj.first_name" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">Last_name :</span></td>
+                            <td><input type="text" class="form__input" [(ngModel)]="studentService.studentObj.last_name" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">Date of birth :</span></td>
+                            <td><input type="date" class="form__input" [(ngModel)]="studentService.studentObj.dob" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span> Gender : </span></td>
+
+                            <td>
+                                <select class="form__input" [(ngModel)]="studentService.studentObj.gender" [ngModelOptions]="{standalone:true}" >
+                                    <option value="male">male</option>
+                                    <option value="Female">Female</option>
+                                    <option>prefer not to say</option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">  Address :</span></td>
+                            <td><textarea class="form__input" [(ngModel)]="studentService.studentObj.address" [ngModelOptions]="{standalone:true}"></textarea>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">District :</span></td>
+                            <td>
+                                <select type="text"  id="district" name="district" class="form__input" [(ngModel)]="studentService.studentObj.district" required>
+                                    <option [value]="null" [disabled]="true" [selected]="true">Select District</option>
+                                    <option *ngFor="let district of studentService.districts" [value]="district.list_value">{{district.list_value}}</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name"> Contact :</span></td>
+                            <td><input type="text" class="form__input" [(ngModel)]="studentService.studentObj.contact_no" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+
+                        <tr>
+
+                            <td><span class="form__name"> Grade :</span></td>
+                            <td><input type="text" class="form__input" [(ngModel)]="studentService.studentObj.grade" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        
+
+                    </table>
+
+
+
+                </form>
+
+            </div>
+
+            <div class="form__img">
+                <img src="https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg" alt="Student Image">
+                <button>Add picture</button>
+            </div>
+
+       </div>
+
+       <div class="form__row2">
+        <button class="seve__button" (click)="studentService.saveStudent()">save</button>
+        <button class="cancel__button" (click)="studentService.addNew()">Cancel</button>
+        <button class="close__button" (click)="studentService.addNew()">Close</button>
+
+
+       </div>
+    
+    </div>
+   
+
+
+</div>

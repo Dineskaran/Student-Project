@@ -1,0 +1,156 @@
+<div class="teacher">
+
+    <div *ngIf="!teacherService.isAddNew" class="teacher">
+        <div class="header">
+            <div class="title">
+                Teachers Main Details
+            </div>
+
+            <div class="option">
+                <button class="add_button" (click)="teacherService.addNew()"> <span class="material-symbols-outlined"> add </span>Add New</button>
+            </div>
+
+        </div>
+
+        <div >
+
+            <table class="list">
+                <tr>
+                  <th>ID</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>DOB</th>
+                  <th>Gender</th>
+                  <th>Address</th>
+                  <th>District</th>
+                  <th>Contact No</th>
+                  <th>Expertise</th>
+                  
+                </tr>
+                <tr  class="data" *ngFor="let teacher of teacherService.teacherList; let i = index">
+                  <td>{{ teacher.id }}</td>
+                  <td>{{ teacher.first_name }}</td>
+                  <td>{{ teacher.last_name }}</td>
+                  <td>{{ teacher.Dob }}</td>
+                  <td>{{ teacher.gender }}</td>
+                  <td>{{ teacher.address }}</td>
+                  <td>{{ teacher.district }}</td>
+                  <td>{{ teacher.contact }}</td>
+                  <td>{{ teacher.Expertise }}</td>
+                  <td><button class="material-symbols-outlined buttons__edit">edit</button></td>
+                  <td><button class="material-symbols-outlined buttons__delete">delete</button></td>
+                </tr>              
+                
+              </table>
+
+        </div>
+    
+    </div>
+
+
+    <div *ngIf="teacherService.isAddNew" class="teachar__add__new"> 
+
+        <div class="header">
+            <div class="title">
+                Teachers Main Details
+            </div>
+
+            <div class="option">
+                <button class="add_button" (click)="teacherService.addNew()"> <span class="material-symbols-outlined"> add </span>show</button>
+            </div>
+
+        </div>
+
+        
+        <div class="form__row1">
+            <div class="form__data">
+                <form>
+                    <table>
+
+                        <tr>
+
+                            <td><span class="form__name">First_name :</span></td>
+                            <td><input  type="text" class ="form__input" [(ngModel)]="teacherService.teacherObj.first_name" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">Last_name :</span></td>
+                            <td><input type="text" class="form__input" [(ngModel)]="teacherService.teacherObj.last_name" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">Date of birth :</span></td>
+                            <td><input type="date" class="form__input" [(ngModel)]="teacherService.teacherObj.Dob" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span> Gender : </span></td>
+
+                            <td>
+                                <select class="form__input" [(ngModel)]="teacherService.teacherObj.gender" [ngModelOptions]="{standalone:true}" >
+                                    <option value="male">male</option>
+                                    <option value="Female">Female</option>
+                                    <option>prefer not to say</option>
+
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">  Address :</span></td>
+                            <td><textarea class="form__input" [(ngModel)]="teacherService.teacherObj.address" [ngModelOptions]="{standalone:true}"></textarea>  </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name">District :</span></td>
+                            <td><select type="text"  id="district" name="district" class="form__input" [(ngModel)]="teacherService.teacherObj.district" required>
+                                <option [value]="null" [disabled]="true" [selected]="true">Select District</option>
+                                <option *ngFor="let district of teacherService.districts" [value]="district.list_value">{{district.list_value}}</option>
+                            </select> </td>
+                        </tr>
+
+                        <tr>
+
+                            <td><span class="form__name"> Contact :</span></td>
+                            <td><input type="text" class="form__input" [(ngModel)]="teacherService.teacherObj.contact" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+
+                        <tr>
+
+                            <td><span class="form__name"> Expertise :</span></td>
+                            <td><input type="text" class="form__input" [(ngModel)]="teacherService.teacherObj.Expertise" [ngModelOptions]="{standalone:true}"/>  </td>
+                        </tr>
+
+                        
+
+                    </table>
+
+
+
+                </form>
+
+            </div>
+
+       </div>
+
+       <div class="form__row2">
+        <button class="seve__button" (click)="teacherService.saveTeacher()">save</button>
+        <button class="cancel__button"  (click)="teacherService.addNew()">Cancel</button>
+        <button class="close__button" (click)="teacherService.addNew()">Close</button>
+
+
+       </div>
+    
+    </div>
+   
+
+
+</div>
+
